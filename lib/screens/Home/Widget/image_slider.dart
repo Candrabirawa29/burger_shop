@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class ImageSlider extends StatelessWidget {
   final Function (int) onChange;
   final int currentSlide;
-  const ImageSlider({super.key, required this.currentSlide,required this.onChange});
+  const ImageSlider({
+    super.key,
+    required this.currentSlide,
+    required this.onChange
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class ImageSlider extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 Image.asset(
-                  "images/slider2.png",
+                  "images/slider2.jpg",
                   fit: BoxFit.cover,
                 ),
                 Image.asset(
@@ -36,7 +40,8 @@ class ImageSlider extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
+        Positioned.fill(
+          bottom: 10,
           child: Align(
             alignment: Alignment.bottomCenter,
               child: Row(
@@ -44,8 +49,18 @@ class ImageSlider extends StatelessWidget {
               children: List.generate(
                 5,
                 (index) => AnimatedContainer(
-                duration: Duration(microseconds: 300),
-                width: ,
+                duration: const Duration(microseconds: 300),
+                width: currentSlide == index ? 15 : 8,
+                height: 8,
+                margin: const EdgeInsets.only(right: 3),
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: currentSlide == index
+                ? Colors.black
+                : Colors.transparent,
+                border: Border.all(
+                  color: Colors.black,
+                )),
                 ),
               ),
             ),
